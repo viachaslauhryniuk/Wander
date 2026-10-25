@@ -16,37 +16,37 @@
 			containerPortal = 5651686D308E1ACE00C3770E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 56516874308E1ACE00C3770E;
-			remoteInfo = Wander;
+			remoteInfo = Asides;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		56516875308E1ACE00C3770E /* Wander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wander.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		56516882308E1ACF00C3770E /* WanderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WanderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		56516875308E1ACE00C3770E /* Asides.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Asides.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		56516882308E1ACF00C3770E /* AsidesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AsidesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		565168A7308E204B00C3770E /* Exceptions for "Wander" folder in "Wander" target */ = {
+		565168A7308E204B00C3770E /* Exceptions for "Asides" folder in "Asides" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 56516874308E1ACE00C3770E /* Wander */;
+			target = 56516874308E1ACE00C3770E /* Asides */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		56516877308E1ACE00C3770E /* Wander */ = {
+		56516877308E1ACE00C3770E /* Asides */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				565168A7308E204B00C3770E /* Exceptions for "Wander" folder in "Wander" target */,
+				565168A7308E204B00C3770E /* Exceptions for "Asides" folder in "Asides" target */,
 			);
-			path = Wander;
+			path = Asides;
 			sourceTree = "<group>";
 		};
-		56516885308E1ACF00C3770E /* WanderTests */ = {
+		56516885308E1ACF00C3770E /* AsidesTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = WanderTests;
+			path = AsidesTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -69,8 +69,8 @@
 		5651686C308E1ACE00C3770E = {
 			isa = PBXGroup;
 			children = (
-				56516877308E1ACE00C3770E /* Wander */,
-				56516885308E1ACF00C3770E /* WanderTests */,
+				56516877308E1ACE00C3770E /* Asides */,
+				56516885308E1ACF00C3770E /* AsidesTests */,
 				56516876308E1ACE00C3770E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -78,8 +78,8 @@
 		56516876308E1ACE00C3770E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				56516875308E1ACE00C3770E /* Wander.app */,
-				56516882308E1ACF00C3770E /* WanderTests.xctest */,
+				56516875308E1ACE00C3770E /* Asides.app */,
+				56516882308E1ACF00C3770E /* AsidesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,9 +87,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		56516874308E1ACE00C3770E /* Wander */ = {
+		56516874308E1ACE00C3770E /* Asides */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 56516894308E1ACF00C3770E /* Build configuration list for PBXNativeTarget "Wander" */;
+			buildConfigurationList = 56516894308E1ACF00C3770E /* Build configuration list for PBXNativeTarget "Asides" */;
 			buildPhases = (
 				56516871308E1ACE00C3770E /* Sources */,
 				56516872308E1ACE00C3770E /* Frameworks */,
@@ -98,19 +98,19 @@
 			buildRules = (
 			);
 			fileSystemSynchronizedGroups = (
-				56516877308E1ACE00C3770E /* Wander */,
+				56516877308E1ACE00C3770E /* Asides */,
 			);
-			name = Wander;
+			name = Asides;
 			packageProductDependencies = (
 				565168B3308E233A00C3770E /* ClaudeLanguageModel */,
 			);
-			productName = Wander;
-			productReference = 56516875308E1ACE00C3770E /* Wander.app */;
+			productName = Asides;
+			productReference = 56516875308E1ACE00C3770E /* Asides.app */;
 			productType = "com.apple.product-type.application";
 		};
-		56516881308E1ACF00C3770E /* WanderTests */ = {
+		56516881308E1ACF00C3770E /* AsidesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 56516897308E1ACF00C3770E /* Build configuration list for PBXNativeTarget "WanderTests" */;
+			buildConfigurationList = 56516897308E1ACF00C3770E /* Build configuration list for PBXNativeTarget "AsidesTests" */;
 			buildPhases = (
 				5651687E308E1ACF00C3770E /* Sources */,
 				5651687F308E1ACF00C3770E /* Frameworks */,
@@ -122,11 +122,11 @@
 				56516884308E1ACF00C3770E /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				56516885308E1ACF00C3770E /* WanderTests */,
+				56516885308E1ACF00C3770E /* AsidesTests */,
 			);
-			name = WanderTests;
-			productName = WanderTests;
-			productReference = 56516882308E1ACF00C3770E /* WanderTests.xctest */;
+			name = AsidesTests;
+			productName = AsidesTests;
+			productReference = 56516882308E1ACF00C3770E /* AsidesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -148,7 +148,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 56516870308E1ACE00C3770E /* Build configuration list for PBXProject "Wander" */;
+			buildConfigurationList = 56516870308E1ACE00C3770E /* Build configuration list for PBXProject "Asides" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -165,8 +165,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				56516874308E1ACE00C3770E /* Wander */,
-				56516881308E1ACF00C3770E /* WanderTests */,
+				56516874308E1ACE00C3770E /* Asides */,
+				56516881308E1ACF00C3770E /* AsidesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -200,13 +200,13 @@
 /* Begin PBXTargetDependency section */
 		56516884308E1ACF00C3770E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 56516874308E1ACE00C3770E /* Wander */;
+			target = 56516874308E1ACE00C3770E /* Asides */;
 			targetProxy = 56516883308E1ACF00C3770E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		56516892308E1ACF00C3770E /* Debug configuration for PBXProject "Wander" */ = {
+		56516892308E1ACF00C3770E /* Debug configuration for PBXProject "Asides" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -271,7 +271,7 @@
 			};
 			name = Debug;
 		};
-		56516893308E1ACF00C3770E /* Release configuration for PBXProject "Wander" */ = {
+		56516893308E1ACF00C3770E /* Release configuration for PBXProject "Asides" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -329,7 +329,7 @@
 			};
 			name = Release;
 		};
-		56516895308E1ACF00C3770E /* Debug configuration for PBXNativeTarget "Wander" */ = {
+		56516895308E1ACF00C3770E /* Debug configuration for PBXNativeTarget "Asides" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -339,9 +339,9 @@
 				DEVELOPMENT_TEAM = 4ZH5DKVALP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Wander/Info.plist;
+				INFOPLIST_FILE = Asides/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Wander uses your location to find places near you and to follow your walk from stop to stop.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Asides uses your location to find places near you and to follow your walk from stop to stop.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -352,7 +352,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "viachaslau-hryniuk.Wander";
+				PRODUCT_BUNDLE_IDENTIFIER = "viachaslau-hryniuk.Asides";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -368,7 +368,7 @@
 			};
 			name = Debug;
 		};
-		56516896308E1ACF00C3770E /* Release configuration for PBXNativeTarget "Wander" */ = {
+		56516896308E1ACF00C3770E /* Release configuration for PBXNativeTarget "Asides" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -378,9 +378,9 @@
 				DEVELOPMENT_TEAM = 4ZH5DKVALP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Wander/Info.plist;
+				INFOPLIST_FILE = Asides/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Wander uses your location to find places near you and to follow your walk from stop to stop.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Asides uses your location to find places near you and to follow your walk from stop to stop.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -391,7 +391,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "viachaslau-hryniuk.Wander";
+				PRODUCT_BUNDLE_IDENTIFIER = "viachaslau-hryniuk.Asides";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -407,7 +407,7 @@
 			};
 			name = Release;
 		};
-		56516898308E1ACF00C3770E /* Debug configuration for PBXNativeTarget "WanderTests" */ = {
+		56516898308E1ACF00C3770E /* Debug configuration for PBXNativeTarget "AsidesTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -417,7 +417,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "viachaslau-hryniuk.WanderTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "viachaslau-hryniuk.AsidesTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -429,11 +429,11 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wander.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Wander";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Asides.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Asides";
 			};
 			name = Debug;
 		};
-		56516899308E1ACF00C3770E /* Release configuration for PBXNativeTarget "WanderTests" */ = {
+		56516899308E1ACF00C3770E /* Release configuration for PBXNativeTarget "AsidesTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -443,7 +443,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "viachaslau-hryniuk.WanderTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "viachaslau-hryniuk.AsidesTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -455,34 +455,34 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wander.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Wander";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Asides.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Asides";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		56516870308E1ACE00C3770E /* Build configuration list for PBXProject "Wander" */ = {
+		56516870308E1ACE00C3770E /* Build configuration list for PBXProject "Asides" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				56516892308E1ACF00C3770E /* Debug configuration for PBXProject "Wander" */,
-				56516893308E1ACF00C3770E /* Release configuration for PBXProject "Wander" */,
+				56516892308E1ACF00C3770E /* Debug configuration for PBXProject "Asides" */,
+				56516893308E1ACF00C3770E /* Release configuration for PBXProject "Asides" */,
 			);
 			defaultConfigurationName = Release;
 		};
-		56516894308E1ACF00C3770E /* Build configuration list for PBXNativeTarget "Wander" */ = {
+		56516894308E1ACF00C3770E /* Build configuration list for PBXNativeTarget "Asides" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				56516895308E1ACF00C3770E /* Debug configuration for PBXNativeTarget "Wander" */,
-				56516896308E1ACF00C3770E /* Release configuration for PBXNativeTarget "Wander" */,
+				56516895308E1ACF00C3770E /* Debug configuration for PBXNativeTarget "Asides" */,
+				56516896308E1ACF00C3770E /* Release configuration for PBXNativeTarget "Asides" */,
 			);
 			defaultConfigurationName = Release;
 		};
-		56516897308E1ACF00C3770E /* Build configuration list for PBXNativeTarget "WanderTests" */ = {
+		56516897308E1ACF00C3770E /* Build configuration list for PBXNativeTarget "AsidesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				56516898308E1ACF00C3770E /* Debug configuration for PBXNativeTarget "WanderTests" */,
-				56516899308E1ACF00C3770E /* Release configuration for PBXNativeTarget "WanderTests" */,
+				56516898308E1ACF00C3770E /* Debug configuration for PBXNativeTarget "AsidesTests" */,
+				56516899308E1ACF00C3770E /* Release configuration for PBXNativeTarget "AsidesTests" */,
 			);
 			defaultConfigurationName = Release;
 		};

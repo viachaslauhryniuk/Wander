@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct WanderApp: App {
+struct AsidesApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

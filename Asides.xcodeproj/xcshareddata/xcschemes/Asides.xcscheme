@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "56516874308E1ACE00C3770E"
-               BuildableName = "Wander.app"
-               ReferencedContainer = "container:Wander.xcodeproj">
+               BuildableName = "Asides.app"
+               ReferencedContainer = "container:Asides.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,8 +35,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "56516881308E1ACF00C3770E"
-               BuildableName = "WanderTests.xctest"
-               ReferencedContainer = "container:Wander.xcodeproj">
+               BuildableName = "AsidesTests.xctest"
+               ReferencedContainer = "container:Asides.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,8 +57,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "56516874308E1ACE00C3770E"
-            BuildableName = "Wander.app"
-            ReferencedContainer = "container:Wander.xcodeproj">
+            BuildableName = "Asides.app"
+            ReferencedContainer = "container:Asides.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -73,8 +73,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "56516874308E1ACE00C3770E"
-            BuildableName = "Wander.app"
-            ReferencedContainer = "container:Wander.xcodeproj">
+            BuildableName = "Asides.app"
+            ReferencedContainer = "container:Asides.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
