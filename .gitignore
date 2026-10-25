@@ -7,6 +7,9 @@ xcuserdata/
 DerivedData/
 build/
 
+# Worker URL for this machine (see Config.xcconfig)
+Secrets.xcconfig
+
 # Swift Package Manager
 .build/
 .swiftpm/
@@ -15,6 +18,7 @@ build/
 worker/node_modules/
 worker/.wrangler/
 worker/.dev.vars
+worker/worker-configuration.d.ts
 
 # Local only: docs, reference screenshots, agent tooling
 docs/
