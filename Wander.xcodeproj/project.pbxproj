@@ -6,6 +6,10 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		565168B4308E233A00C3770E /* ClaudeLanguageModel in Frameworks */ = {isa = PBXBuildFile; productRef = 565168B3308E233A00C3770E /* ClaudeLanguageModel */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		56516883308E1ACF00C3770E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -51,6 +55,7 @@
 		56516872308E1ACE00C3770E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				565168B4308E233A00C3770E /* ClaudeLanguageModel in Frameworks */,
 			);
 		};
 		5651687F308E1ACF00C3770E /* Frameworks */ = {
@@ -96,6 +101,9 @@
 				56516877308E1ACE00C3770E /* Wander */,
 			);
 			name = Wander;
+			packageProductDependencies = (
+				565168B3308E233A00C3770E /* ClaudeLanguageModel */,
+			);
 			productName = Wander;
 			productReference = 56516875308E1ACE00C3770E /* Wander.app */;
 			productType = "com.apple.product-type.application";
@@ -149,6 +157,9 @@
 			);
 			mainGroup = 5651686C308E1ACE00C3770E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				565168B2308E233A00C3770E /* XCLocalSwiftPackageReference "Packages/ClaudeLanguageModel" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 56516876308E1ACE00C3770E /* Products */;
 			projectDirPath = "";
@@ -330,6 +341,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Wander/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Wander uses your location to find places near you and to follow your walk from stop to stop.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -368,6 +380,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Wander/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Wander uses your location to find places near you and to follow your walk from stop to stop.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -474,6 +487,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		565168B2308E233A00C3770E /* XCLocalSwiftPackageReference "Packages/ClaudeLanguageModel" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/ClaudeLanguageModel;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		565168B3308E233A00C3770E /* ClaudeLanguageModel */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ClaudeLanguageModel;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5651686D308E1ACE00C3770E /* Project object */;
 	validationLevel = 1;
