@@ -21,9 +21,22 @@
 		56516882308E1ACF00C3770E /* WanderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WanderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		565168A7308E204B00C3770E /* Exceptions for "Wander" folder in "Wander" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 56516874308E1ACE00C3770E /* Wander */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		56516877308E1ACE00C3770E /* Wander */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				565168A7308E204B00C3770E /* Exceptions for "Wander" folder in "Wander" target */,
+			);
 			path = Wander;
 			sourceTree = "<group>";
 		};
@@ -315,6 +328,7 @@
 				DEVELOPMENT_TEAM = 4ZH5DKVALP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Wander/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -352,6 +366,7 @@
 				DEVELOPMENT_TEAM = 4ZH5DKVALP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Wander/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
