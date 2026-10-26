@@ -9,5 +9,6 @@ let package = Package(
     ],
     targets: [
         .target(name: "ClaudeLanguageModel"),
+        .testTarget(name: "ClaudeLanguageModelTests", dependencies: ["ClaudeLanguageModel"]),
     ]
 )
