@@ -1,4 +1,4 @@
-const MAX_BYTES = 64 * 1024;
+export const MAX_BYTES = 64 * 1024;
 const MODEL = "claude-sonnet-5-5";
 const MAX_TOKENS = 16_000;
 const MAX_MESSAGES = 60;
