@@ -8,10 +8,19 @@ export default {
   async fetch(request, env): Promise<Response> {
     if (new URL(request.url).pathname !== "/v1/messages") return error(404, "not found");
     if (request.method !== "POST") return error(405, "method not allowed");
+
+    const install = request.headers.get("x-asides-install") ?? "unknown";
+    const ip = request.headers.get("cf-connecting-ip") ?? "local";
+    const { success } = await env.RATE_LIMITER.limit({ key: `${install}:${ip}` });
+    if (!success) return error(429, "too many requests, try again in a minute");
+
     if (Number(request.headers.get("content-length") ?? 0) > MAX_BYTES) return error(400, "body too large");
 
     const result = validate(await request.text());
-    if (!result.ok) return error(400, result.error);
+    if (!result.ok) {
+      console.warn("rejected:", result.error);
+      return error(400, result.error);
+    }
     const body = result.body;
 
     const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
