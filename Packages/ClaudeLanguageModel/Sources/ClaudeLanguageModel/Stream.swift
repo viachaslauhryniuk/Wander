@@ -4,6 +4,7 @@ import FoundationModels
 public enum ClaudeError: Error {
     case truncated
     case server(String)
+    case http(Int, String)
 }
 
 enum MessagesStream {

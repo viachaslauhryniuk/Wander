@@ -33,8 +33,6 @@ private struct RecordedModel: LanguageModel {
     struct Executor: LanguageModelExecutor {
         init(configuration: Int) {}
 
-        func prewarm(model: RecordedModel, transcript: Transcript) {}
-
         nonisolated(nonsending) func respond(to request: LanguageModelExecutorGenerationRequest, model: RecordedModel, streamingInto channel: LanguageModelExecutorGenerationChannel) async throws {
             var lines = toolTurn
             if case .toolOutput = request.transcript.last { lines = answerTurn }

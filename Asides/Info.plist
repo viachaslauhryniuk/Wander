@@ -7,5 +7,7 @@
 		<string>audio</string>
 		<string>location</string>
 	</array>
+	<key>WorkerURL</key>
+	<string>$(WORKER_URL)</string>
 </dict>
 </plist>

@@ -21,6 +21,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		56474EFF3094915800BE7234 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		56516875308E1ACE00C3770E /* Asides.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Asides.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56516882308E1ACF00C3770E /* AsidesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AsidesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -69,6 +70,7 @@
 		5651686C308E1ACE00C3770E = {
 			isa = PBXGroup;
 			children = (
+				56474EFF3094915800BE7234 /* Config.xcconfig */,
 				56516877308E1ACE00C3770E /* Asides */,
 				56516885308E1ACF00C3770E /* AsidesTests */,
 				56516876308E1ACE00C3770E /* Products */,
@@ -331,6 +333,7 @@
 		};
 		56516895308E1ACF00C3770E /* Debug configuration for PBXNativeTarget "Asides" */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56474EFF3094915800BE7234 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -370,6 +373,7 @@
 		};
 		56516896308E1ACF00C3770E /* Release configuration for PBXNativeTarget "Asides" */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56474EFF3094915800BE7234 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
