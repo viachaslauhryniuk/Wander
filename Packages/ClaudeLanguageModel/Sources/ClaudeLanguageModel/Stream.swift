@@ -23,13 +23,13 @@ enum MessagesStream {
             case "content_block_delta":
                 guard let delta = event.delta else { continue }
                 if let text = delta.text {
-                    await channel.send(.response(action: .appendText(text, tokenCount: 0)))
+                    await channel.send(.response(action: .appendText(text, tokenCount: 1)))
                 } else if let thinking = delta.thinking {
-                    await channel.send(.reasoning(action: .appendText(thinking, tokenCount: 0)))
+                    await channel.send(.reasoning(action: .appendText(thinking, tokenCount: 1)))
                 } else if let signature = delta.signature {
                     await channel.send(.reasoning(action: .updateSignature(Data(signature.utf8), tokenCount: 0)))
                 } else if let json = delta.partialJson, let index = event.index, let call = toolCalls[index] {
-                    await channel.send(.toolCalls(action: .toolCall(id: call.id, name: call.name, action: .appendArguments(json, tokenCount: 0))))
+                    await channel.send(.toolCalls(action: .toolCall(id: call.id, name: call.name, action: .appendArguments(json, tokenCount: 1))))
                 }
             case "message_delta":
                 switch event.delta?.stopReason {
