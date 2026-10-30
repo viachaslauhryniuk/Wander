@@ -31,7 +31,7 @@ final class PlaceCatalog {
         return "\(id(for: item)) \(item.name ?? "Unnamed"), \(category), \(distance) m"
     }
 
-    private func id(for item: MKMapItem) -> String {
+    func id(for item: MKMapItem) -> String {
         if let known = items.first(where: { isSame($0.value, item) }) { return known.key }
         let id = "p\(items.count + 1)"
         items[id] = item
