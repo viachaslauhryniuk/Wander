@@ -27,14 +27,11 @@ final class TourPlanner {
         let session = LanguageModelSession(model: model, tools: [SearchPlacesTool(catalog: catalog)], instructions: Self.instructions)
         let stream = session.streamResponse(to: "\(request)\nNeighborhood: \(neighborhood)\nTime: about \(minutes) minutes", generating: TourPlan.self)
 
-        var raw: GeneratedContent?
         for try await snapshot in stream {
             draft = snapshot.content
-            raw = snapshot.rawContent
         }
-        guard let raw else { throw TourPlanError.tooFewPlaces }
 
-        var plan = try TourPlan(raw)
+        var plan = try await stream.collect().content
         plan.stops = Array(plan.stops.filter { catalog.items[$0.placeID] != nil }.prefix(8))
         guard plan.stops.count >= 3 else { throw TourPlanError.tooFewPlaces }
         return plan
