@@ -2,12 +2,16 @@ import MapKit
 import SwiftUI
 
 struct RootView: View {
+    @AppStorage("hasOnboarded") private var hasOnboarded = false
     @State private var isSplashShown = true
 
     var body: some View {
         ZStack {
-            Map()
-                .ignoresSafeArea()
+            if hasOnboarded {
+                Map()
+            } else {
+                OnboardingView(hasOnboarded: $hasOnboarded)
+            }
             if isSplashShown {
                 SplashView()
                     .transition(.opacity)
