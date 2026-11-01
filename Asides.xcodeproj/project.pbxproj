@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		565168B4308E233A00C3770E /* ClaudeLanguageModel in Frameworks */ = {isa = PBXBuildFile; productRef = 565168B3308E233A00C3770E /* ClaudeLanguageModel */; };
+		56F9BA2E30976479004B9EF0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 56F9BA2D30976479004B9EF0 /* Lottie */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			files = (
 				565168B4308E233A00C3770E /* ClaudeLanguageModel in Frameworks */,
+				56F9BA2E30976479004B9EF0 /* Lottie in Frameworks */,
 			);
 		};
 		5651687F308E1ACF00C3770E /* Frameworks */ = {
@@ -105,6 +107,7 @@
 			name = Asides;
 			packageProductDependencies = (
 				565168B3308E233A00C3770E /* ClaudeLanguageModel */,
+				56F9BA2D30976479004B9EF0 /* Lottie */,
 			);
 			productName = Asides;
 			productReference = 56516875308E1ACE00C3770E /* Asides.app */;
@@ -161,6 +164,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				565168B2308E233A00C3770E /* XCLocalSwiftPackageReference "Packages/ClaudeLanguageModel" */,
+				56F9BA2C30976479004B9EF0 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 56516876308E1ACE00C3770E /* Products */;
@@ -347,7 +351,6 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Asides uses your location to find places near you and to follow your walk from stop to stop.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -387,7 +390,6 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Asides uses your location to find places near you and to follow your walk from stop to stop.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -499,10 +501,26 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		56F9BA2C30976479004B9EF0 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.6.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		565168B3308E233A00C3770E /* ClaudeLanguageModel */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ClaudeLanguageModel;
+		};
+		56F9BA2D30976479004B9EF0 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56F9BA2C30976479004B9EF0 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
