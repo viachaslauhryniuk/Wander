@@ -1,4 +1,3 @@
-import FoundationModels
 import MapKit
 
 final class PlaceCatalog {
@@ -41,19 +40,5 @@ final class PlaceCatalog {
     private func isSame(_ a: MKMapItem, _ b: MKMapItem) -> Bool {
         if let identifier = a.identifier, identifier == b.identifier { return true }
         return a.name == b.name && a.location.distance(from: b.location) < 20
-    }
-}
-
-struct SearchPlacesTool: Tool {
-    let name = "search_places"
-    let description = "Finds real places within about 1.5 km of the starting point. Each line starts with the place's short id."
-    let catalog: PlaceCatalog
-
-    @Generable struct Arguments {
-        @Guide(description: "What to look for, like baroque church or specialty coffee") var query: String
-    }
-
-    func call(arguments: Arguments) async throws -> String {
-        try await catalog.search(arguments.query)
     }
 }
