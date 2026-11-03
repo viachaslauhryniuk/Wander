@@ -17,6 +17,7 @@ struct OnboardingView: View {
                 } animation: { _ in
                     .easeInOut(duration: 10)
                 }
+                .ignoresSafeArea()
 
             VStack(alignment: .leading, spacing: 20) {
                 HStack(spacing: 14) {
@@ -48,7 +49,7 @@ struct OnboardingView: View {
                             .font(.headline)
                             .frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(.glassProminent)
+                    .buttonStyle(.borderedProminent)
                     .controlSize(.extraLarge)
 
                     Text("Next, iOS will ask to use your location.")
@@ -58,10 +59,10 @@ struct OnboardingView: View {
                 .padding(.top, 4)
             }
             .padding(EdgeInsets(top: 28, leading: 22, bottom: 20, trailing: 22))
-            .glassEffect(in: .rect(cornerRadius: 42))
+            .glassEffect(in: .rect(corners: .concentric(minimum: .fixed(42))))
             .padding(10)
         }
-        .ignoresSafeArea()
+        .ignoresSafeArea(.container, edges: .bottom)
     }
 
     private func row(_ symbol: String, _ text: String) -> some View {

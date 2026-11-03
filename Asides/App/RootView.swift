@@ -1,4 +1,3 @@
-import MapKit
 import SwiftUI
 
 struct RootView: View {
@@ -8,7 +7,7 @@ struct RootView: View {
     var body: some View {
         ZStack {
             if hasOnboarded {
-                Map()
+                ExploreView(isDemo: ModelProvider.model == nil)
             } else {
                 OnboardingView(hasOnboarded: $hasOnboarded)
             }
