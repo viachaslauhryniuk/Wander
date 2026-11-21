@@ -1,13 +1,10 @@
 import FoundationModels
-import Observation
 
 enum TourPlanError: Error {
     case tooFewPlaces
 }
 
-@Observable
 final class TourPlanner {
-    private(set) var draft: TourPlan.PartiallyGenerated?
     let catalog: PlaceCatalog
     private let model: any LanguageModel
 
@@ -23,12 +20,12 @@ final class TourPlanner {
         self.catalog = catalog
     }
 
-    func plan(_ request: String, in neighborhood: String, minutes: Int) async throws -> TourPlan {
+    func plan(_ request: String, in neighborhood: String, minutes: Int, onDraft: (TourPlan.PartiallyGenerated) -> Void) async throws -> TourPlan {
         let session = LanguageModelSession(model: model, tools: [SearchPlacesTool(catalog: catalog)], instructions: Self.instructions)
         let stream = session.streamResponse(to: "\(request)\nNeighborhood: \(neighborhood)\nTime: about \(minutes) minutes", generating: TourPlan.self)
 
         for try await snapshot in stream {
-            draft = snapshot.content
+            onDraft(snapshot.content)
         }
 
         var plan = try await stream.collect().content

@@ -48,8 +48,8 @@ struct WalkPanel: View {
                 .foregroundStyle(.tint)
             TextField("Describe your walk", text: $viewModel.text)
                 .submitLabel(.go)
-            Button {
-            } label: {
+                .onSubmit(viewModel.send)
+            Button(action: viewModel.send) {
                 Image(systemName: "arrow.up")
                     .fontWeight(.semibold)
                     .frame(width: 24, height: 24)

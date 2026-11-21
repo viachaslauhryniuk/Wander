@@ -2,7 +2,7 @@ import MapKit
 
 enum DemoTour {
     static let neighborhood = "Stare Miasto, Warsaw"
-    static let center = CLLocation(latitude: 52.24981, longitude: 21.01215)
+    static let center = CLLocation(latitude: 52.24827, longitude: 21.01158)
 
     static let plan = TourPlan(
         title: "Warsaw Rebuilt From Memory",

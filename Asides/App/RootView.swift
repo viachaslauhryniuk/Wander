@@ -3,11 +3,12 @@ import SwiftUI
 struct RootView: View {
     @AppStorage("hasOnboarded") private var hasOnboarded = false
     @State private var isSplashShown = true
+    @State private var session = TourSession(model: ModelProvider.model)
 
     var body: some View {
         ZStack {
             if hasOnboarded {
-                ExploreView(isDemo: ModelProvider.model == nil)
+                ExploreView(session: session)
             } else {
                 OnboardingView(hasOnboarded: $hasOnboarded)
             }

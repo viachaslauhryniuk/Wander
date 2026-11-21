@@ -5,18 +5,19 @@ import Testing
 
 @Test @MainActor func plannerDropsStopsOutsideTheCatalog() async throws {
     let planner = TourPlanner(model: ScriptedModel(executorConfiguration: ["p1", "p9", "p2", "p3"]), catalog: threePlaces())
+    var title: String?
 
-    let plan = try await planner.plan("churches", in: "Stare Miasto", minutes: 60)
+    let plan = try await planner.plan("churches", in: "Stare Miasto", minutes: 60) { title = $0.title }
 
     #expect(plan.stops.map(\.placeID) == ["p1", "p2", "p3"])
-    #expect(planner.draft?.title == "Old Town")
+    #expect(title == "Old Town")
 }
 
 @Test @MainActor func plannerFailsWithFewerThanThreeRealStops() async {
     let planner = TourPlanner(model: ScriptedModel(executorConfiguration: ["p1", "p9", "p2"]), catalog: threePlaces())
 
     await #expect(throws: TourPlanError.self) {
-        try await planner.plan("churches", in: "Stare Miasto", minutes: 60)
+        try await planner.plan("churches", in: "Stare Miasto", minutes: 60) { _ in }
     }
 }
 
