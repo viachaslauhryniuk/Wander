@@ -12,6 +12,7 @@ final class GuideChat: Identifiable {
 
     let stopName: String
     var question = ""
+    var error: (any Error)?
     private(set) var messages: [Message] = []
     private(set) var isAnswering = false
     private let session: LanguageModelSession
@@ -46,6 +47,7 @@ final class GuideChat: Identifiable {
                 try await ask(text)
             } catch {
                 question = text
+                self.error = error
             }
             isAnswering = false
         }

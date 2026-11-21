@@ -40,8 +40,8 @@ struct StoryView: View {
                         .font(.title.bold())
                         .tracking(-0.56)
                         .skeleton(headline == nil)
-                    if viewModel.writer.failures[stop.placeID] != nil {
-                        Text("Couldn't write this story. Check your connection and open it again.")
+                    if let failure = viewModel.writer.failures[stop.placeID] {
+                        Text(failure.message)
                             .foregroundStyle(.secondary)
                     }
                     ForEach(paragraphs.indices, id: \.self) { index in

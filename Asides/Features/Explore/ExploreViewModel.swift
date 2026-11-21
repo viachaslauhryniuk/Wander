@@ -10,6 +10,10 @@ final class ExploreViewModel {
     var position: MapCameraPosition
     var isOverviewShown = false
     var walk: WalkViewModel?
+    var error: (any Error)?
+    var isChoosingArea = false
+    var areaQuery = ""
+    private(set) var isLocationDenied = false
     private(set) var hours = 2
     private(set) var area: Area?
     private(set) var isBuilding = false
@@ -40,9 +44,25 @@ final class ExploreViewModel {
 
     func loadArea() async {
         area = try? await Area.current()
+        isLocationDenied = area == nil
         if let area {
             withAnimation {
                 position = Self.overview(of: area)
+            }
+        }
+    }
+
+    func chooseArea() {
+        let query = areaQuery
+        Task {
+            do {
+                let area = try await Area.named(query)
+                self.area = area
+                withAnimation {
+                    position = Self.overview(of: area)
+                }
+            } catch {
+                self.error = error
             }
         }
     }
@@ -57,7 +77,10 @@ final class ExploreViewModel {
                 isOverviewShown = true
                 showRoute()
             } catch {
-                if !Task.isCancelled { stop() }
+                if !Task.isCancelled {
+                    self.error = error
+                    stop()
+                }
             }
         }
     }

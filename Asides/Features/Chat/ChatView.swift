@@ -28,6 +28,7 @@ struct ChatView: View {
             input
         }
         .presentationBackground(Color.paper)
+        .errorAlert($chat.error)
     }
 
     private var header: some View {

@@ -52,15 +52,26 @@ struct ExploreView: View {
                     .buttonBorderShape(.circle)
                     .controlSize(.large)
                     .padding([.horizontal, .top], 16)
-            } else if let place = viewModel.area?.name {
-                Label(place, systemImage: "mappin")
-                    .font(.subheadline.weight(.semibold))
-                    .padding(.horizontal, 14)
-                    .frame(height: 44)
-                    .glassEffect(in: .capsule)
-                    .padding([.horizontal, .top], 16)
+            } else if viewModel.area != nil || viewModel.isLocationDenied {
+                Button {
+                    viewModel.isChoosingArea = true
+                } label: {
+                    Label(viewModel.area?.name ?? "Choose area", systemImage: viewModel.area == nil ? "magnifyingglass" : "mappin")
+                        .font(.subheadline.weight(.semibold))
+                        .padding(.horizontal, 14)
+                        .frame(height: 44)
+                        .glassEffect(.regular.interactive(), in: .capsule)
+                }
+                .buttonStyle(.plain)
+                .padding([.horizontal, .top], 16)
             }
         }
+        .alert("Where do you want to walk?", isPresented: $viewModel.isChoosingArea) {
+            TextField("Neighborhood or city", text: $viewModel.areaQuery)
+            Button("Cancel", role: .cancel) {}
+            Button("Go", action: viewModel.chooseArea)
+        }
+        .errorAlert($viewModel.error)
         .sheet(isPresented: $viewModel.isOverviewShown, onDismiss: viewModel.stop) {
             OverviewSheet(viewModel: viewModel)
         }
