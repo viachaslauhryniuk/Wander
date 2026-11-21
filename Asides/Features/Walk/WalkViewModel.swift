@@ -45,6 +45,10 @@ final class WalkViewModel: Identifiable {
         playerStop.flatMap { writer.stories[$0.placeID] }
     }
 
+    var audio: Data? {
+        playerStop.flatMap { writer.audio[$0.placeID] }
+    }
+
     var headline: String? {
         story?.headline ?? playerStop.flatMap { writer.drafts[$0.placeID]?.headline }
     }
@@ -72,8 +76,10 @@ final class WalkViewModel: Identifiable {
         guard nextStop != nil else { return }
         next += 1
         writer.prepare(stop: next)
-        if let story {
-            narrator.read(story)
+        if let audio {
+            narrator.play(audio)
+        } else {
+            narrator.stop()
         }
         if let playerStop {
             read(playerStop)

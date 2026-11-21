@@ -1,53 +1,57 @@
 import AVFoundation
-import NaturalLanguage
 import Observation
 
 @Observable
-final class Narrator: NSObject, AVSpeechSynthesizerDelegate {
+final class Narrator: NSObject, AVAudioPlayerDelegate {
     private(set) var isPlaying = false
-    private let synthesizer = AVSpeechSynthesizer()
+    private var player: AVAudioPlayer?
 
-    override init() {
-        super.init()
-        synthesizer.delegate = self
+    var time: TimeInterval {
+        get { player?.currentTime ?? 0 }
+        set { player?.currentTime = newValue }
     }
 
-    func read(_ story: Story) {
-        synthesizer.stopSpeaking(at: .immediate)
+    var duration: TimeInterval {
+        player?.duration ?? 0
+    }
+
+    static func speech(for story: Story) async throws -> Data {
+        var request = URLRequest(url: ModelProvider.workerURL.appending(path: "v1/speech"))
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "content-type")
+        request.setValue(ModelProvider.installID, forHTTPHeaderField: "x-asides-install")
+        let text = ([story.headline] + story.paragraphs + [story.lookFor]).joined(separator: "\n\n")
+        request.httpBody = try JSONEncoder().encode(["text": text])
+        let (data, response) = try await URLSession.shared.data(for: request)
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw URLError(.badServerResponse) }
+        return data
+    }
+
+    func play(_ audio: Data) {
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio)
         try? AVAudioSession.sharedInstance().setActive(true)
-
-        let text = ([story.headline] + story.paragraphs + [story.lookFor]).joined(separator: "\n\n")
-        let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = NLLanguageRecognizer.dominantLanguage(for: text).flatMap { voice(for: $0.rawValue) }
-        synthesizer.speak(utterance)
-        isPlaying = true
+        player = try? AVAudioPlayer(data: audio)
+        player?.delegate = self
+        isPlaying = player?.play() ?? false
     }
 
-    func toggle(_ story: Story) {
-        if synthesizer.isPaused {
-            synthesizer.continueSpeaking()
-            isPlaying = true
-        } else if synthesizer.isSpeaking {
-            synthesizer.pauseSpeaking(at: .word)
-            isPlaying = false
+    func toggle(_ audio: Data) {
+        guard let player, player.data == audio else { return play(audio) }
+        if player.isPlaying {
+            player.pause()
         } else {
-            read(story)
+            player.play()
         }
+        isPlaying = player.isPlaying
     }
 
     func stop() {
-        synthesizer.stopSpeaking(at: .immediate)
+        player?.stop()
+        player = nil
         isPlaying = false
     }
 
-    private func voice(for language: String) -> AVSpeechSynthesisVoice? {
-        let installed = AVSpeechSynthesisVoice.speechVoices().filter { $0.language.hasPrefix(language) && !$0.voiceTraits.contains(.isNoveltyVoice) }
-        let best = installed.filter { $0.quality != .default }.max { $0.quality.rawValue < $1.quality.rawValue }
-        return best ?? AVSpeechSynthesisVoice(language: language)
-    }
-
-    nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+    nonisolated func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         Task { @MainActor in
             isPlaying = false
         }

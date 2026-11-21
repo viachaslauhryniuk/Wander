@@ -21,6 +21,7 @@ struct StoryPlayer: View {
                 .contentShape(.rect)
             }
             .buttonStyle(.plain)
+            progress
             HStack(spacing: 12) {
                 Button("End walk", systemImage: "stop.fill", action: onEnd)
                     .font(.subheadline.weight(.semibold))
@@ -29,8 +30,8 @@ struct StoryPlayer: View {
                     .controlSize(.large)
                 Spacer()
                 Button(viewModel.narrator.isPlaying ? "Pause" : "Play", systemImage: viewModel.narrator.isPlaying ? "pause.fill" : "play.fill") {
-                    if let story = viewModel.story {
-                        viewModel.narrator.toggle(story)
+                    if let audio = viewModel.audio {
+                        viewModel.narrator.toggle(audio)
                     }
                 }
                 .labelStyle(.iconOnly)
@@ -38,7 +39,7 @@ struct StoryPlayer: View {
                 .buttonStyle(.glassProminent)
                 .buttonBorderShape(.circle)
                 .controlSize(.extraLarge)
-                .disabled(viewModel.story == nil)
+                .disabled(viewModel.audio == nil)
                 Button("Next stop", systemImage: "forward.end.fill", action: viewModel.arrive)
                     .labelStyle(.iconOnly)
                     .font(.title3)
@@ -51,6 +52,22 @@ struct StoryPlayer: View {
         .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20))
         .glassEffect(in: .rect(corners: .concentric(minimum: .fixed(42))))
         .padding(8)
+    }
+
+    private var progress: some View {
+        TimelineView(.animation(minimumInterval: 0.25, paused: !viewModel.narrator.isPlaying)) { _ in
+            VStack(spacing: 2) {
+                Slider(value: Bindable(viewModel.narrator).time, in: 0...max(viewModel.narrator.duration, 1))
+                    .disabled(viewModel.narrator.duration == 0)
+                HStack {
+                    Text(Duration.seconds(viewModel.narrator.time), format: .time(pattern: .minuteSecond))
+                    Spacer()
+                    Text(Duration.seconds(viewModel.narrator.duration), format: .time(pattern: .minuteSecond))
+                }
+                .font(.caption.monospacedDigit())
+                .foregroundStyle(.secondary)
+            }
+        }
     }
 
     private var header: some View {
