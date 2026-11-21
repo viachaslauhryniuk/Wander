@@ -15,18 +15,10 @@ final class TourSession {
     private(set) var plan: TourPlan?
     private(set) var route: WalkingRoute?
     private var catalog: PlaceCatalog?
-    private let model: (any LanguageModel)?
+    private let model: any LanguageModel
 
-    init(model: (any LanguageModel)?) {
+    init(model: any LanguageModel) {
         self.model = model
-    }
-
-    var isDemo: Bool {
-        model == nil
-    }
-
-    var modelName: String {
-        isDemo ? "Demo" : "Claude"
     }
 
     var stops: [Stop] {
@@ -40,14 +32,11 @@ final class TourSession {
 
     func build(_ request: String, in area: Area, minutes: Int) async throws {
         reset()
-        if let model {
-            let catalog = PlaceCatalog(center: area.center)
-            self.catalog = catalog
-            plan = try await TourPlanner(model: model, catalog: catalog).plan(request, in: area.name, minutes: minutes) { draft = $0 }
-        } else {
-            try await playDemo()
-        }
-        let route = try? await WalkingRoute(through: plan?.stops.compactMap { catalog?.items[$0.placeID] } ?? [])
+        let catalog = PlaceCatalog(center: area.center)
+        self.catalog = catalog
+        let plan = try await TourPlanner(model: model, catalog: catalog).plan(request, in: area.name, minutes: minutes) { draft = $0 }
+        self.plan = plan
+        let route = try? await WalkingRoute(through: plan.stops.compactMap { catalog.items[$0.placeID] })
         try Task.checkCancellation()
         self.route = route
     }
@@ -57,17 +46,5 @@ final class TourSession {
         plan = nil
         route = nil
         catalog = nil
-    }
-
-    private func playDemo() async throws {
-        catalog = DemoTour.catalog()
-        let full = DemoTour.plan.asPartiallyGenerated()
-        for count in 0...DemoTour.plan.stops.count {
-            var draft = full
-            draft.stops = full.stops.map { Array($0.prefix(count)) }
-            self.draft = draft
-            try await Task.sleep(for: .seconds(0.4))
-        }
-        plan = DemoTour.plan
     }
 }

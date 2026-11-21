@@ -9,7 +9,7 @@ struct OnboardingView: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            Map(initialPosition: .camera(MapCamera(centerCoordinate: DemoTour.center.coordinate, distance: 3000)), interactionModes: [])
+            Map(initialPosition: .camera(MapCamera(centerCoordinate: CLLocationCoordinate2D(latitude: 52.24827, longitude: 21.01158), distance: 3000)), interactionModes: [])
                 .phaseAnimator([false, true]) { map, moved in
                     map
                         .scaleEffect(1.12)

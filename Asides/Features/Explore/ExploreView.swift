@@ -11,9 +11,7 @@ struct ExploreView: View {
 
     var body: some View {
         Map(position: $viewModel.position) {
-            if !viewModel.isDemo {
-                UserAnnotation()
-            }
+            UserAnnotation()
             MapPolyline(coordinates: viewModel.line)
                 .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round))
             ForEach(viewModel.session.stops) { stop in
@@ -24,9 +22,7 @@ struct ExploreView: View {
         .mapStyle(.standard(elevation: .realistic))
         .mapControls {
             MapPitchToggle()
-            if !viewModel.isDemo {
-                MapUserLocationButton()
-            }
+            MapUserLocationButton()
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             GlassEffectContainer {
@@ -56,8 +52,13 @@ struct ExploreView: View {
                     .buttonBorderShape(.circle)
                     .controlSize(.large)
                     .padding([.horizontal, .top], 16)
-            } else {
-                ExploreBadges(place: viewModel.area?.name, isDemo: viewModel.isDemo)
+            } else if let place = viewModel.area?.name {
+                Label(place, systemImage: "mappin")
+                    .font(.subheadline.weight(.semibold))
+                    .padding(.horizontal, 14)
+                    .frame(height: 44)
+                    .glassEffect(in: .capsule)
+                    .padding([.horizontal, .top], 16)
             }
         }
         .sheet(isPresented: $viewModel.isOverviewShown, onDismiss: viewModel.stop) {

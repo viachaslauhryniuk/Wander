@@ -31,7 +31,7 @@ import Testing
     return catalog
 }
 
-private struct ScriptedModel: LanguageModel {
+struct ScriptedModel: LanguageModel {
     let capabilities = LanguageModelCapabilities([.toolCalling, .guidedGeneration])
     let executorConfiguration: [String]
 

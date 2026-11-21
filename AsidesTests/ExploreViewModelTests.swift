@@ -1,16 +1,8 @@
 import Testing
 @testable import Asides
 
-@Test @MainActor func demoLoadsTheDemoArea() async {
-    let viewModel = ExploreViewModel(session: TourSession(model: nil))
-
-    await viewModel.loadArea()
-
-    #expect(viewModel.area?.name == DemoTour.neighborhood)
-}
-
 @Test @MainActor func requestJoinsTextAndTopics() {
-    let viewModel = ExploreViewModel(session: TourSession(model: nil))
+    let viewModel = ExploreViewModel(session: TourSession(model: ScriptedModel(executorConfiguration: [])))
     viewModel.text = "  old churches \n"
     viewModel.topics = ["Viewpoints", "No crowds"]
 

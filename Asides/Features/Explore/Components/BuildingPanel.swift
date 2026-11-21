@@ -35,7 +35,7 @@ struct BuildingPanel: View {
                 .font(.subheadline.weight(.semibold))
                 .foregroundStyle(Color.accentText)
             Spacer()
-            Label(session.modelName, systemImage: "cloud")
+            Label("Claude", systemImage: "cloud")
                 .font(.caption.weight(.semibold))
                 .foregroundStyle(.secondary)
                 .padding(.horizontal, 10)

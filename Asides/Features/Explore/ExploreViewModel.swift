@@ -16,11 +16,7 @@ final class ExploreViewModel {
 
     init(session: TourSession) {
         self.session = session
-        position = session.isDemo ? Self.overview(of: .demo) : .userLocation(fallback: .automatic)
-    }
-
-    var isDemo: Bool {
-        session.isDemo
+        position = .userLocation(fallback: .automatic)
     }
 
     var request: String {
@@ -46,7 +42,7 @@ final class ExploreViewModel {
     }
 
     func loadArea() async {
-        area = isDemo ? .demo : try? await Area.current()
+        area = try? await Area.current()
         if let area {
             withAnimation {
                 position = Self.overview(of: area)
