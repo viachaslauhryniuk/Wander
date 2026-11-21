@@ -7,7 +7,7 @@ final class StoryWriter {
     private(set) var drafts: [String: Story.PartiallyGenerated] = [:]
     private(set) var stories: [String: Story] = [:]
     private(set) var failures: [String: any Error] = [:]
-    private(set) var audio: [String: Data] = [:]
+    private(set) var audio: [String: URL] = [:]
     private var writing: Set<String> = []
     private let model: any LanguageModel
     private let plan: TourPlan

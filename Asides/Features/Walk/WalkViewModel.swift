@@ -45,7 +45,7 @@ final class WalkViewModel: Identifiable {
         playerStop.flatMap { writer.stories[$0.placeID] }
     }
 
-    var audio: Data? {
+    var audio: URL? {
         playerStop.flatMap { writer.audio[$0.placeID] }
     }
 
