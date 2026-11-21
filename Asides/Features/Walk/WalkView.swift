@@ -30,6 +30,9 @@ struct WalkView: View {
             }
         }
         .ignoresSafeArea(.container, edges: .bottom)
+        .sheet(item: $viewModel.reading) { stop in
+            StoryView(viewModel: viewModel, stop: stop)
+        }
         .task {
             await viewModel.track()
         }

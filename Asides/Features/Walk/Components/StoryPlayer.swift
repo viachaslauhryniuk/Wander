@@ -6,19 +6,21 @@ struct StoryPlayer: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(viewModel.hasArrived ? "Now playing · stop \(viewModel.playerStop?.number ?? 1)" : "First stop")
-                    .font(.caption.weight(.semibold))
-                    .textCase(.uppercase)
-                    .tracking(0.7)
-                    .foregroundStyle(Color.accentText)
-                Text(viewModel.headline ?? "A story about this place")
-                    .font(.title3.bold())
-                    .skeleton(viewModel.headline == nil)
-                Text(viewModel.playerStop?.name ?? "")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
+            Button {
+                if let stop = viewModel.playerStop {
+                    viewModel.read(stop)
+                }
+            } label: {
+                HStack {
+                    header
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.tertiary)
+                }
+                .contentShape(.rect)
             }
+            .buttonStyle(.plain)
             HStack(spacing: 12) {
                 Button("End walk", systemImage: "stop.fill", action: onEnd)
                     .font(.subheadline.weight(.semibold))
@@ -49,5 +51,21 @@ struct StoryPlayer: View {
         .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20))
         .glassEffect(in: .rect(corners: .concentric(minimum: .fixed(42))))
         .padding(8)
+    }
+
+    private var header: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(viewModel.hasArrived ? "Now playing · stop \(viewModel.playerStop?.number ?? 1)" : "First stop")
+                .font(.caption.weight(.semibold))
+                .textCase(.uppercase)
+                .tracking(0.7)
+                .foregroundStyle(Color.accentText)
+            Text(viewModel.headline ?? "A story about this place")
+                .font(.title3.bold())
+                .skeleton(viewModel.headline == nil)
+            Text(viewModel.playerStop?.name ?? "")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+        }
     }
 }

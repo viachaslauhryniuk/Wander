@@ -9,6 +9,8 @@ final class WalkViewModel: Identifiable {
     let writer: StoryWriter
     let narrator = Narrator()
     var position: MapCameraPosition = .userLocation(followsHeading: true, fallback: .automatic)
+    var reading: TourSession.Stop?
+    private(set) var scene: MKLookAroundScene?
     private(set) var next = 0
     private(set) var location: CLLocation?
 
@@ -67,6 +69,17 @@ final class WalkViewModel: Identifiable {
         writer.prepare(stop: next)
         if let story {
             narrator.read(story)
+        }
+        if let playerStop {
+            read(playerStop)
+        }
+    }
+
+    func read(_ stop: TourSession.Stop) {
+        reading = stop
+        scene = nil
+        Task {
+            scene = try? await MKLookAroundSceneRequest(coordinate: stop.coordinate).scene
         }
     }
 
