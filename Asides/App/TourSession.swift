@@ -16,7 +16,7 @@ final class TourSession {
     private(set) var plan: TourPlan?
     private(set) var route: WalkingRoute?
     let model: any LanguageModel
-    private var catalog: PlaceCatalog?
+    private(set) var catalog: PlaceCatalog?
 
     init(model: any LanguageModel) {
         self.model = model

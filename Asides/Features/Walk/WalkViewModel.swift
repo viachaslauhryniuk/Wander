@@ -10,12 +10,17 @@ final class WalkViewModel: Identifiable {
     let narrator = Narrator()
     var position: MapCameraPosition = .userLocation(followsHeading: true, fallback: .automatic)
     var reading: TourSession.Stop?
+    var chat: GuideChat?
     private(set) var scene: MKLookAroundScene?
     private(set) var next = 0
     private(set) var location: CLLocation?
+    private let plan: TourPlan
+    private let neighborhood: String
 
     init(session: TourSession, plan: TourPlan, neighborhood: String) {
         self.session = session
+        self.plan = plan
+        self.neighborhood = neighborhood
         writer = StoryWriter(model: session.model, plan: plan, neighborhood: neighborhood)
         writer.prepare(stop: 0)
     }
@@ -81,6 +86,11 @@ final class WalkViewModel: Identifiable {
         Task {
             scene = try? await MKLookAroundSceneRequest(coordinate: stop.coordinate).scene
         }
+    }
+
+    func ask(about stop: TourSession.Stop) {
+        guard let story = writer.stories[stop.placeID], let planned = plan.stops.first(where: { $0.placeID == stop.placeID }), let catalog = session.catalog else { return }
+        chat = GuideChat(model: session.model, stop: planned, story: story, neighborhood: neighborhood, catalog: catalog)
     }
 
     func end() {

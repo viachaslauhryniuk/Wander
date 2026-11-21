@@ -3,14 +3,17 @@ import FoundationModels
 import Observation
 
 @Observable
-final class GuideChat {
+final class GuideChat: Identifiable {
     struct Message: Identifiable {
         let id = UUID()
         let isGuide: Bool
         var text: String
     }
 
+    let stopName: String
+    var question = ""
     private(set) var messages: [Message] = []
+    private(set) var isAnswering = false
     private let session: LanguageModelSession
 
     init(model: any LanguageModel, stop: PlannedStop, story: Story, neighborhood: String, catalog: PlaceCatalog) {
@@ -25,7 +28,27 @@ final class GuideChat {
             Story they just heard: \(story.headline)
             \(story.paragraphs.joined(separator: "\n"))
             """
+        stopName = stop.name
         session = LanguageModelSession(model: model, tools: [SearchPlacesTool(catalog: catalog)], instructions: instructions)
+    }
+
+    var canSend: Bool {
+        !isAnswering && !question.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
+    func send() {
+        guard canSend else { return }
+        let text = question.trimmingCharacters(in: .whitespacesAndNewlines)
+        question = ""
+        isAnswering = true
+        Task {
+            do {
+                try await ask(text)
+            } catch {
+                question = text
+            }
+            isAnswering = false
+        }
     }
 
     func ask(_ question: String) async throws {

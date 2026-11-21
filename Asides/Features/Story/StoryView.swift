@@ -2,7 +2,7 @@ import MapKit
 import SwiftUI
 
 struct StoryView: View {
-    let viewModel: WalkViewModel
+    @Bindable var viewModel: WalkViewModel
     let stop: TourSession.Stop
     @Environment(\.dismiss) private var dismiss
 
@@ -69,6 +69,22 @@ struct StoryView: View {
             }
         }
         .ignoresSafeArea(edges: .top)
+        .safeAreaBar(edge: .bottom) {
+            Button {
+                viewModel.ask(about: stop)
+            } label: {
+                Label("Ask about this place", systemImage: "sparkle")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.glass)
+            .controlSize(.extraLarge)
+            .disabled(story == nil)
+            .padding(.horizontal, 16)
+        }
+        .sheet(item: $viewModel.chat) { chat in
+            ChatView(chat: chat)
+        }
         .overlay(alignment: .topLeading) {
             Button("Close", systemImage: "xmark", action: dismiss.callAsFunction)
                 .labelStyle(.iconOnly)
