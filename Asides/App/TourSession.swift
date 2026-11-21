@@ -13,6 +13,7 @@ final class TourSession {
 
     private(set) var draft: TourPlan.PartiallyGenerated?
     private(set) var plan: TourPlan?
+    private(set) var route: WalkingRoute?
     private var catalog: PlaceCatalog?
     private let model: (any LanguageModel)?
 
@@ -39,15 +40,22 @@ final class TourSession {
 
     func build(_ request: String, in area: Area, minutes: Int) async throws {
         reset()
-        guard let model else { return try await playDemo() }
-        let catalog = PlaceCatalog(center: area.center)
-        self.catalog = catalog
-        plan = try await TourPlanner(model: model, catalog: catalog).plan(request, in: area.name, minutes: minutes) { draft = $0 }
+        if let model {
+            let catalog = PlaceCatalog(center: area.center)
+            self.catalog = catalog
+            plan = try await TourPlanner(model: model, catalog: catalog).plan(request, in: area.name, minutes: minutes) { draft = $0 }
+        } else {
+            try await playDemo()
+        }
+        let route = try? await WalkingRoute(through: plan?.stops.compactMap { catalog?.items[$0.placeID] } ?? [])
+        try Task.checkCancellation()
+        self.route = route
     }
 
     func reset() {
         draft = nil
         plan = nil
+        route = nil
         catalog = nil
     }
 

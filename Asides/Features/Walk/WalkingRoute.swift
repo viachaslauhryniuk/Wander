@@ -11,6 +11,10 @@ struct WalkingRoute {
         legs.reduce(0) { $0 + $1.distance } / 1000
     }
 
+    var coordinates: [CLLocationCoordinate2D] {
+        legs.flatMap { UnsafeBufferPointer(start: $0.polyline.points(), count: $0.polyline.pointCount).map(\.coordinate) }
+    }
+
     init(through stops: [MKMapItem]) async throws {
         var legs: [MKRoute] = []
         for (from, to) in zip(stops, stops.dropFirst()) {

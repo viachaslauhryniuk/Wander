@@ -14,7 +14,7 @@ struct ExploreView: View {
             if !viewModel.isDemo {
                 UserAnnotation()
             }
-            MapPolyline(coordinates: viewModel.session.stops.map(\.coordinate))
+            MapPolyline(coordinates: viewModel.line)
                 .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round))
             ForEach(viewModel.session.stops) { stop in
                 Marker(stop.name, monogram: Text("\(stop.number)"), coordinate: stop.coordinate)
@@ -33,7 +33,7 @@ struct ExploreView: View {
                 if viewModel.isBuilding {
                     BuildingPanel(viewModel: viewModel)
                         .glassEffectID("panel", in: glass)
-                } else {
+                } else if !viewModel.isOverviewShown {
                     WalkPanel(viewModel: viewModel)
                         .glassEffectID("panel", in: glass)
                 }
@@ -46,7 +46,22 @@ struct ExploreView: View {
         }
         .ignoresSafeArea(.container, edges: .bottom)
         .overlay(alignment: .topLeading) {
-            ExploreBadges(place: viewModel.area?.name, isDemo: viewModel.isDemo)
+            if viewModel.isOverviewShown {
+                Button("Back", systemImage: "chevron.left") {
+                    viewModel.isOverviewShown = false
+                }
+                    .labelStyle(.iconOnly)
+                    .fontWeight(.semibold)
+                    .buttonStyle(.glass)
+                    .buttonBorderShape(.circle)
+                    .controlSize(.large)
+                    .padding([.horizontal, .top], 16)
+            } else {
+                ExploreBadges(place: viewModel.area?.name, isDemo: viewModel.isDemo)
+            }
+        }
+        .sheet(isPresented: $viewModel.isOverviewShown, onDismiss: viewModel.stop) {
+            OverviewSheet(viewModel: viewModel)
         }
         .task {
             await viewModel.loadArea()
