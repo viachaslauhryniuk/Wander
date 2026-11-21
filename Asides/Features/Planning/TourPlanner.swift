@@ -20,12 +20,12 @@ final class TourPlanner {
         self.catalog = catalog
     }
 
-    func plan(_ request: String, in neighborhood: String, minutes: Int, onDraft: (TourPlan.PartiallyGenerated) -> Void) async throws -> TourPlan {
+    func plan(_ request: String, in neighborhood: String, minutes: Int, onDraft: (TourPlan.PartiallyGenerated) async -> Void) async throws -> TourPlan {
         let session = LanguageModelSession(model: model, tools: [SearchPlacesTool(catalog: catalog)], instructions: Self.instructions)
         let stream = session.streamResponse(to: "\(request)\nNeighborhood: \(neighborhood)\nTime: about \(minutes) minutes", generating: TourPlan.self)
 
         for try await snapshot in stream {
-            onDraft(snapshot.content)
+            await onDraft(snapshot.content)
         }
 
         var plan = try await stream.collect().content

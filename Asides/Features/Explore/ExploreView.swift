@@ -12,7 +12,7 @@ struct ExploreView: View {
     var body: some View {
         Map(position: $viewModel.position) {
             UserAnnotation()
-            MapPolyline(coordinates: viewModel.line)
+            MapPolyline(coordinates: viewModel.session.line)
                 .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round))
             ForEach(viewModel.session.stops) { stop in
                 Marker(stop.name, monogram: Text("\(stop.number)"), coordinate: stop.coordinate)

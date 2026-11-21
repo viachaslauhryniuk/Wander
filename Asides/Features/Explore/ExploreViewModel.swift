@@ -9,6 +9,7 @@ final class ExploreViewModel {
     var topics: Set<String> = []
     var position: MapCameraPosition
     var isOverviewShown = false
+    var walk: WalkViewModel?
     private(set) var hours = 2
     private(set) var area: Area?
     private(set) var isBuilding = false
@@ -27,10 +28,6 @@ final class ExploreViewModel {
 
     var canSend: Bool {
         area != nil && !request.isEmpty
-    }
-
-    var line: [CLLocationCoordinate2D] {
-        session.route?.coordinates ?? session.stops.map(\.coordinate)
     }
 
     var durationTitle: String {
@@ -65,6 +62,11 @@ final class ExploreViewModel {
         }
     }
 
+    func startWalk() {
+        guard let plan = session.plan, let area else { return }
+        walk = WalkViewModel(session: session, plan: plan, neighborhood: area.name)
+    }
+
     func stop() {
         buildTask?.cancel()
         isBuilding = false
@@ -77,6 +79,7 @@ final class ExploreViewModel {
     }
 
     private func showRoute() {
+        let line = session.line
         var rect = MKPolyline(coordinates: line, count: line.count).boundingMapRect
         rect = rect.insetBy(dx: -rect.width * 0.2, dy: -rect.height * 0.2)
         rect.size.height *= 2

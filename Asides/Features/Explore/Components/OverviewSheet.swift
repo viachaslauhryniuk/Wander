@@ -2,7 +2,8 @@ import MapKit
 import SwiftUI
 
 struct OverviewSheet: View {
-    let viewModel: ExploreViewModel
+    @Bindable var viewModel: ExploreViewModel
+    @Namespace private var transition
 
     private var route: WalkingRoute? {
         viewModel.session.route
@@ -19,15 +20,19 @@ struct OverviewSheet: View {
                     .padding(EdgeInsets(top: 28, leading: 22, bottom: 16, trailing: 22))
                 }
             }
-            Button {
-            } label: {
+            Button(action: viewModel.startWalk) {
                 Label("Start walk", systemImage: "play.fill")
                     .font(.headline)
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.glassProminent)
             .controlSize(.extraLarge)
+            .matchedTransitionSource(id: "walk", in: transition)
             .padding(16)
+        }
+        .fullScreenCover(item: $viewModel.walk) { walk in
+            WalkView(viewModel: walk)
+                .navigationTransition(.zoom(sourceID: "walk", in: transition))
         }
         .presentationBackground(Color.paper)
         .presentationDetents([.medium, .large])
